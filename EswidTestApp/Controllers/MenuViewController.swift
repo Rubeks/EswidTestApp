@@ -89,25 +89,25 @@ class MenuViewController: UIViewController {
                 let itemImage = filteredProductList[indexPath.row].imageData
                 else { return }
             
-            cell.nameLabel.text = itemName
-            cell.priceLabel.text = itemPrice
-            cell.countLabel.text = itemCount
+            cell.nameLabel.text = "Наименование: " + itemName
+            cell.priceLabel.text = "Цена: " + itemPrice
+            cell.countLabel.text = "Количество: " + itemCount
             cell.customImageView.image = UIImage(data: itemImage)
-        
-        //Если поиск пустой
+            
+            //Если поиск пустой
         } else {
-        guard
-            let itemName = productList?[indexPath.row].name,
-            let itemPrice = productList?[indexPath.row].price,
-            let itemCount = productList?[indexPath.row].count,
-            let itemImage = productList?[indexPath.row].imageData
-            else { return }
-        
-        
-        cell.nameLabel.text = itemName
-        cell.priceLabel.text = itemPrice
-        cell.countLabel.text = itemCount
-        cell.customImageView.image = UIImage(data: itemImage)
+            guard
+                let itemName = productList?[indexPath.row].name,
+                let itemPrice = productList?[indexPath.row].price,
+                let itemCount = productList?[indexPath.row].count,
+                let itemImage = productList?[indexPath.row].imageData
+                else { return }
+            
+            
+            cell.nameLabel.text = "Наименование: " + itemName
+            cell.priceLabel.text = "Цена: " + itemPrice
+            cell.countLabel.text = "Количество: " + itemCount
+            cell.customImageView.image = UIImage(data: itemImage)
         }
     }
     
