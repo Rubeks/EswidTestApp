@@ -27,16 +27,23 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var countTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     //MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activityIndicator.isHidden = true
+        
         //Убирает полосы пустые
         tableView.tableFooterView = UIView()
         
         setupScreen()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     //Скрыть клавиатуру
@@ -195,15 +202,31 @@ class DetailTableViewController: UITableViewController {
             showEmptyAlert()
         } else {
             
-            saveProductItemToCoreData()
+            //Отображение и запуск индикатора
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
             
-            NotificationCenter.default.post(name: NSNotification.Name("ProductItemSaveOrDelete"), object: nil)
-            navigationController?.popViewController(animated: true)
+            //Задержка в сохранении.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.saveProductItemToCoreData()
+                NotificationCenter.default.post(name: NSNotification.Name("ProductItemSaveOrDelete"), object: nil)
+                self.navigationController?.popViewController(animated: true)
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+            }
         }
     }
     
     //Удаление из CoreData
     @IBAction func deleteButton(_ sender: UIButton) {
+        
+        //Проверка полей
+        if nameTextField.text!.isEmpty || nameTextField.text == "" || priceTextField.text!.isEmpty || priceTextField.text == "" || countTextField.text!.isEmpty || countTextField.text == "" {
+            navigationController?.popViewController(animated: true)
+        
+        //Удаление из CoreData
+        } else {
+            
         //Выбранная ячейка
         guard let deleteProduct = product else { return }
         
@@ -227,6 +250,7 @@ class DetailTableViewController: UITableViewController {
         //Для обновления таблицы
         NotificationCenter.default.post(name: NSNotification.Name("ProductItemSaveOrDelete"), object: nil)
         navigationController?.popViewController(animated: true)
+        }
     }
 }
 

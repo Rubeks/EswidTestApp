@@ -135,10 +135,7 @@ class MenuViewController: UIViewController {
     //Создание нового товара
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
-        //Переход с задержкой
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.performSegue(withIdentifier: "addButtonPressed", sender: nil)
-        }
+        self.performSegue(withIdentifier: "addButtonPressed", sender: nil)
     }
 }
 

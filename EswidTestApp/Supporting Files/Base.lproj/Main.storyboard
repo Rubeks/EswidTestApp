@@ -294,6 +294,11 @@
                                                         <action selector="saveButton:" destination="xYh-9w-HGJ" eventType="touchUpInside" id="Udu-Kx-Oaj"/>
                                                     </connections>
                                                 </button>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8pj-3P-mvo">
+                                                    <rect key="frame" x="178" y="27" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="GVr-cz-B8q" firstAttribute="top" secondItem="yVa-SL-f00" secondAttribute="top" constant="12" id="CbX-5Y-c9q"/>
@@ -314,6 +319,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="activityIndicator" destination="8pj-3P-mvo" id="6gY-Uf-msr"/>
                         <outlet property="countTextField" destination="W5x-pV-OpW" id="GPa-pJ-hFb"/>
                         <outlet property="imageView" destination="feK-0F-aiJ" id="K35-ZK-suN"/>
                         <outlet property="nameTextField" destination="ajO-LY-odN" id="mJ2-AI-xBs"/>
